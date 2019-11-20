@@ -1,0 +1,58 @@
+body
+{
+	margin: 0;
+	padding: 10;
+	font-family: sans-serif;
+	background-image:url(big-food-infographics-free-royalty3533.jpg); 
+	background-size: cover;
+	background-position: center;
+	margin: auto;
+}
+
+.sign-up-form
+{
+	width: 300px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+	background: #fff;
+	padding: 20px;
+	margin: 8% auto 0;
+	text-align: center;
+}
+
+.sign-up-form h1
+{
+	color: #D40605;
+	margin-bottom: 30px;
+} 
+
+.input-box 
+{
+	border-radius: 35px;
+	padding: 17px;
+	margin: 28px 0;
+	width: 86%;
+	border: 2px solid #999;
+	outline: none;
+}
+
+button
+{
+	color: white;
+	width: 100%;
+	padding: 10px;
+	border-radius: 20px;
+	font-size: 15px;
+	margin:10px 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+
+}
+.sign-btn
+{
+	background-color: #D80202; 
+}
+a
+{
+  text-decoration: none;
+}
