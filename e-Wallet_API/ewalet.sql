@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2019 at 02:08 PM
+-- Generation Time: Dec 04, 2019 at 11:42 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.6
 
@@ -56,17 +56,6 @@ CREATE TABLE `history` (
   `list` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `history`
---
-
-INSERT INTO `history` (`trid`, `list`) VALUES
-('33a568c790a4a98', ' Time 13:41  Date:21.11.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          1X10  =  10<br> Burger       1X90  =  90<br> Pizza        1X110 =  110<br>------------------------------<br> Total payable amount:210 '),
-('61b917ebfc142b6', ' Time 13:13  Date:21.11.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          2X10  =  20<br> Coffee       2X25  =  50<br> Sandwich     1X50  =  50<br>------------------------------<br> Total payable amount:120 '),
-('67d28e0843544bd', ' Time 01:51  Date:21.11.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Pizza        1X110 =  110<br>------------------------------<br> Total payable amount:110 '),
-('b1b0c14cd25354b', ' Time 13:55  Date:21.11.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          1X10  =  10<br> Set Menu     1X145 =  145<br>------------------------------<br> Total payable amount:155 '),
-('ce1298f2fdc6e42', ' Time 01:49  Date:21.11.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          1X10  =  10<br> Sandwich     1X50  =  50<br>------------------------------<br> Total payable amount:60 ');
-
 -- --------------------------------------------------------
 
 --
@@ -114,6 +103,25 @@ INSERT INTO `regusers` (`card_no`, `nsu_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `req_data`
+--
+
+CREATE TABLE `req_data` (
+  `hostName` varchar(25) NOT NULL,
+  `appKey` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `req_data`
+--
+
+INSERT INTO `req_data` (`hostName`, `appKey`) VALUES
+('android', '12222'),
+('webapp', '12345');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `service_data`
 --
 
@@ -149,7 +157,7 @@ CREATE TABLE `user_data` (
   `hasPass` varchar(200) DEFAULT NULL,
   `address` varchar(70) DEFAULT NULL,
   `secQues` varchar(50) DEFAULT NULL,
-  `ans` varchar(20) DEFAULT NULL
+  `ans` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -157,13 +165,13 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`nsuId`, `name`, `hasPass`, `address`, `secQues`, `ans`) VALUES
-(12212777, 'Stf 1', 'JadduMiya1234', 'Mirpur 2', 'Areh rakh beta', 'ki rakhmu'),
-(17213142, 'Sir', 'anik1234', 'Mirpur10', 'Eto qstn kn!!!!!!!', 'Thabor !!!!!!!!khabi'),
-(17222342, 'Sir Sir', 'LadduMiya1234', 'Mirpur100', 'Eto qstn kn', 'Thabor khabi'),
-(1221277042, 'Laddu', 'Laddu1234', 'Mirpur', 'Eto qstn kn', 'Thabor khabi'),
-(1521277032, 'Nut boltu', 'nutboltu!789', 'chander desh', 'Areh rakh beta', 'ki rakhmu'),
-(1721277042, 'Amik', 'amik1234', 'Mirpur', 'Eto qstn kn', 'Thabor khabi'),
-(1722231042, 'Artful', '$2y$10$kNL5vtlsNzs/en/yGRzA0uTf5ygSbGFvB3I.jR5tbnDhM1LkDsRf6', 'chander desh', 'Areh rakh beta', 'ki rakhmu');
+(12212777, 'Stf 1', 'JadduMiya1234', 'Mirpur 2', '', ''),
+(17213142, 'Sir', 'anik1234', 'Mirpur10', 'qstnnn', '$2y$10$RUjljhEyy9cdU.WnJKl07.hEPZ1xm/4wGTREGbjvNuTy/0B2KDy5u'),
+(17222342, 'Sir Sir', 'LadduMiya1234', 'Mirpur100', '', ''),
+(1221277042, 'Laddu', 'Laddu1234', 'Mirpur', '', ''),
+(1521277032, 'Nut boltu', 'nutboltu!789', 'chander desh', '', ''),
+(1721277042, 'Amik', 'amik1234', 'Mirpur', '', ''),
+(1722231042, 'Artful', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'chander desh', 'Name', 'Shipu');
 
 -- --------------------------------------------------------
 
@@ -182,7 +190,8 @@ CREATE TABLE `wallet` (
 --
 
 INSERT INTO `wallet` (`nsuId`, `hashPin`, `onOrOf`) VALUES
-(1722231042, '$2y$10$Qc.i0/BcUQT/CYjwThl7/uagvSVqH2q8V/iGT.lwSRFmIDhPXqqiC', 1);
+(17213142, '$2y$10$Zi4nDqq4ifGYDx9rgxOT8Ox.ybtt7TlzemCao80x0xbvcLBWbC.0a', 1),
+(1722231042, '$2y$10$Qq7G6xqO1kpC4ALpu.x53e.KiZ6ICohv6.K5ZW5q2BH100KJo4Lku', 1);
 
 --
 -- Indexes for dumped tables
@@ -213,6 +222,12 @@ ALTER TABLE `port`
 ALTER TABLE `regusers`
   ADD PRIMARY KEY (`card_no`),
   ADD KEY `nsu_id` (`nsu_id`);
+
+--
+-- Indexes for table `req_data`
+--
+ALTER TABLE `req_data`
+  ADD PRIMARY KEY (`hostName`);
 
 --
 -- Indexes for table `service_data`

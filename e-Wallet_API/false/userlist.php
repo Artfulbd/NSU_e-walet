@@ -21,7 +21,7 @@
             $query = "SELECT * FROM `regusers`";
             $hold = mysqli_fetch_all(mysqli_query($link, $query), MYSQLI_ASSOC);
             if($hold != null){
-                mysqli_close($link);
+                $conObg->detach();
                 $product_arr = array(
                     "ids" => $hold
                 );

@@ -28,6 +28,9 @@
             echo $req->key;   */
             // for transaction, make sure storage engine is innoDB 
 
+
+            //close link
+
             http_response_code(200);
             echo $mykit->gen_trid();
     }

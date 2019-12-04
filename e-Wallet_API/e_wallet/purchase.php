@@ -10,8 +10,6 @@
     $mykit = new tools;
     $link = $conObg->giveLink();
     $req = json_decode(file_get_contents("php://input"));
-    $url = 'http://localhost/eWalletAPI/BanglaBankApi/transaction.php';
-    
     
     if($link == null){
         http_response_code(404);
@@ -25,7 +23,8 @@
             !$mykit->test_input($req->sec)   ||
             !$mykit->test_input($req->body) ||
             !$mykit->test_input($req->ano) ){
-          echo "Get Lost";
+        $conObg->detach();
+        echo "Get Lost";
     }else{
             $xData = new purData;              // to store extracted data, but first validate
             $xData->data = $req->data;
@@ -69,7 +68,9 @@
                             'clientTo' => $to ,
                             'am' => $am
                             ];
-                       $trid = $xData->purchase_req($url, $key, $from, $to, $am, $load );
+                            //making post request
+                      // $trid = $xData->purchase_req($url, $key, $from, $to, $am, $load );
+                      $trid = $xData->make_req($xData->get_purchaser_url(), $load );
                        $qry = "INSERT INTO `history`(`trid`, `list`) VALUE ('$trid','$xData->list')"; 
                        $hold = mysqli_query($link, $qry); 
                        $count = 0;
@@ -89,7 +90,7 @@
                             http_response_code(200);
                             echo json_encode(array("status" => "ok","trid" => $trid));
                        }
-                       mysqli_close($link);  //closing link
+                       $conObg->detach();  //closing link
                     }else {
                         http_response_code(200);
                         echo json_encode(array("status" => "invalid"));

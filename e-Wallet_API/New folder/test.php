@@ -1,5 +1,12 @@
 <?php
-    $unique = substr(hash('sha256', mt_rand() . microtime()), 0, 15);
-    echo "*".$unique."*".strlen($unique);
+     $hold = '$2y$10$R66GKyXkjlLNKuHQqdhmTe1oBn3V3mCqW2enGxj2yHvCbZjHPX20S';
+     $pass = "1234";
+     $hash = password_hash($pass,PASSWORD_DEFAULT);
+     //echo $hash.'<br>';
+     if(password_verify($pass, $hold)){
+         echo "Matched";
+     }else{
+         echo "NOt matched";
+     } 
 
 ?>

@@ -15,6 +15,9 @@
         function giveLink(){
             return $this->link;
         }
+        function detach(){
+            mysqli_close($this->link);
+        }
         function init_transaction(){
                 $mySqli = new mysqli($this->host , $this->user , $this->pass,$this->bankdb);
                 return $mySqli;

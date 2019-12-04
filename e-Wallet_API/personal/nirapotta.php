@@ -4,10 +4,21 @@
         public $sec;
         public $list;
         public $ano;
+        private $purUrl = "http://localhost/eWalletAPI/BanglaBankApi/transaction.php";
+        private $createUrl = "http://localhost/eWalletAPI/BanglaBankApi/create.php";
+
+        function get_purchaser_url(){
+            return $this->purUrl;
+        }
+
+        function get_create_url(){
+            return $this->createUrl;
+        }
 
         // post request to bank server, cURL
-        function purchase_req($url, $key, $from, $to, $am, $load ){   
-            //url-ify the data for the POST
+       // function purchase_req($url, $key, $from, $to, $am, $load ){   // fullfill it during bank api
+        function make_req($url, $load ){
+                //url-ify the data for the POST
             $json_string = json_encode($load);
 
             //open connection
@@ -44,7 +55,7 @@
             return $new_trid;
         }
 
-        function test_input($data) {
+        function test_input($data) {  // return true if VALID
             $holdOn = $data;
             $data = trim($data);
             $data = stripslashes($data);
