@@ -851,6 +851,7 @@ public class SecondFile extends JFrame {
 			}
 		});
 		txtprb.setText("Connection problem, please try cash payment, Click here");
+		txtprb.setText("Your transaction is off,  try cash payment, Click here");
 		txtprb.setForeground(Color.RED);
 		txtprb.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtprb.setColumns(10);

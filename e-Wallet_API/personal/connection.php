@@ -5,7 +5,7 @@
         private $user = 'root';
         private $pass = '';
         private $ewalletdb = 'ewalet';
-        private $bankdb = '';
+        private $bankdb = 'bank';
         private $link;
         function __construct($dbFor) {
             $db =  strcmp($dbFor,'wallet') ? (strcmp($dbFor,'bank')?'faulty' : $this->bankdb) : $this->ewalletdb;

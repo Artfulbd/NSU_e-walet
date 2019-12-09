@@ -18,7 +18,7 @@
         $mykit = new tools;
         $cmd = $data->data;
         if($mykit->test_input($cmd)  &&  $mykit->isBeg($cmd)){
-            $query = "SELECT * FROM `regusers`";
+            $query = "SELECT * FROM `regusers` join wallet on wallet.nsuId = regusers.nsu_id where wallet.onOrOf = 1";
             $hold = mysqli_fetch_all(mysqli_query($link, $query), MYSQLI_ASSOC);
             if($hold != null){
                 $conObg->detach();

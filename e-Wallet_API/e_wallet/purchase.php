@@ -11,6 +11,7 @@
     $link = $conObg->giveLink();
     $req = json_decode(file_get_contents("php://input"));
     
+    
     if($link == null){
         http_response_code(404);
         echo json_encode(array("status" => "Connection problem on server"));
@@ -55,11 +56,10 @@
                 $qry = 'SELECT api_key FROM `bank` WHERE bankId = 1';
                 $hold = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
 
-                $qry = "SELECT hashPin FROM `wallet` WHERE nsuId = $from";  //check pin here
+                $qry = "SELECT hashPin FROM `wallet` WHERE nsuId = $from and onOrOF = 1";  //check pin here
                 $hold2 = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
 
                 if($hold != null && $hold2 != null){
-                    
                     $key = $hold[0]['api_key'];
                     if(password_verify($pin, $hold2[0]['hashPin'])){
                         $load = [
@@ -72,7 +72,6 @@
                       // $trid = $xData->purchase_req($url, $key, $from, $to, $am, $load );
                       $trid = $xData->make_req($xData->get_purchaser_url(), $load );
                        $qry = "INSERT INTO `history`(`trid`, `list`) VALUE ('$trid','$xData->list')"; 
-                       $hold = mysqli_query($link, $qry); 
                        $count = 0;
                        do{
                         $hold = mysqli_query($link, $qry);

@@ -6,6 +6,7 @@
         public $ano;
         private $purUrl = "http://localhost/eWalletAPI/BanglaBankApi/transaction.php";
         private $createUrl = "http://localhost/eWalletAPI/BanglaBankApi/create.php";
+        private $historyUrl = "http://localhost/eWalletAPI\BanglaBankApi\history.php";
 
         function get_purchaser_url(){
             return $this->purUrl;
@@ -13,6 +14,10 @@
 
         function get_create_url(){
             return $this->createUrl;
+        }
+
+        function get_history_url(){
+            return $this->historyUrl;
         }
 
         // post request to bank server, cURL
