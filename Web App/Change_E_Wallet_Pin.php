@@ -1,26 +1,41 @@
  <?php
-      $rdsPass = $_POST['rdsPass'];
-      $oldWalletPin = $_POST['oldWalletPin'];
-      $newWalletPin = $_POST['newWalletPin'];
-      $confirmWalletPin = $_POST['confirmWalletPin'];
-      $securityQuestion = $_POST['securityQuestion'];
-      $securityQuestionAnswer = $_POST['securityQuestionAnswer'];
-      //database connection
-      $conn= new mysqli('localhost','root','','test');
-      if ($conn->connect_error)
-        {
-          die('Connection Failed : '.$conn->connect_error);
-        }
-      else {
-        $stmt = $conn->prepare("insert into change_e_wallet_pin(rdsPass,oldWalletPin,newWalletPin,confirmWalletPin,securityQuestion,securityQuestionAnswer) values(?,?,?,?,?,?) ");
-        $stmt->bind_param("siiiss",$rdsPass,$oldWalletPin,$newWalletPin,$confirmWalletPin,$securityQuestion,$securityQuestionAnswer);
-        $stmt->execute();
-        echo "Pin Changed Successfully";
-        $stmt->close();
-        $conn->close();
-      }
+ if(isset($_POST["Commit"]))
+ {
+    //connect_establishing
+    /* Attempt MySQL server connection. Assuming I am running MySQL
+    server with default setting (user 'root' with no password) */
+    $conn = mysqli_connect("localhost", "root", "", "test");
+    // Check connection
+    if($conn === false)
+    {
+     die("ERROR: Could not connect. " . mysqli_connect_error());
+   }
+   else
+   { 
+     $rdsPass = mysqli_real_escape_string($conn,$_POST['rdsPass']);
+     $oldWalletPin =  mysqli_real_escape_string($conn,$_POST['oldWalletPin']);
+     $newWalletPin =  mysqli_real_escape_string($conn,$_POST['newWalletPin']);
+     $confirmWalletPin =  mysqli_real_escape_string($conn,$_POST['confirmWalletPin']);
+     $securityQuestion =  mysqli_real_escape_string($conn,$_POST['securityQuestion']);
+     $securityQuestionAnswer =  mysqli_real_escape_string($conn,$_POST['securityQuestionAnswer']);
 
-  ?>
+
+     $sql="INSERT into change_e_wallet_pin (rdsPass,oldWalletPin,newWalletPin,confirmWalletPin,securityQuestion,securityQuestionAnswer) VALUES ('$rdsPass','$newWalletPin','$confirmWalletPin','$securityQuestion','$securityQuestionAnswer');";
+     if (mysqli_query($conn,$sql))
+     {
+       echo "Records Added Successfully";
+     }
+     else{
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    }
+     // close connection
+    mysqli_close($conn);
+
+  }
+}
+
+
+?>
 
 
 
@@ -32,26 +47,60 @@
 
 <?php include 'Temp/Header.php'; ?>
 
-<form action="Change_E_Wallet_Pin.php" method="post" >
-<fieldset>
-  <legend>Required information for Changing Pin</legend>
-  <h2>Change Your E_Wallet Pin</h2>
-  Enter Your RDS Password:<br>
-  <input type="Password" name="rdsPass" required><br>
-  Enter Your old E Wallet Pin:<br>
-  <input type="Password" name="oldWalletPin" required><br>
-  Enter Your New Pin for E Wallet:<br>
-  <input type="Password" name="newWalletPin" required><br>
-  Confirm Pin for E Wallet:<br>
-  <input type="Password" name="confirmWalletPin"required><br>
-    Enter Your Security Question : <br>
-    <textarea name="securityQuestion" rows="2" cols="30" required></textarea><br>
-    Enter Your Security Question's Answer: <br>
-    <textarea name="securityQuestionAnswer" rows="2" cols="30" required></textarea><br>
+<div class="Change_E_Wallet_Pin">
+  <div class="page-header">
+    <h1>Change Your E_Wallet Pin</h1>
+  </div>
 
-  <input type="submit" value="Submit"><br>
-</fieldset>
-</form>
+  <form action="Change_E_Wallet_Pin.php" method="post" >
+    <fieldset>
+
+
+      Enter Your RDS Password:<br>
+      <div class="col-sm-9">
+        <input type="password" placeholder="RDS Password" class="col-xs-10 col-sm-5" name="rdsPass" required>
+      </div><br>
+      <br>
+      Enter Your old E Wallet Pin:<br>
+      <div class="col-sm-9">
+        <input type="password" placeholder="Old Wallet Pin" class="col-xs-10 col-sm-5" name="oldWalletPin" required>
+      </div><br>
+      <br>
+
+      Enter Your New Pin for E Wallet:<br>
+      <div class="col-sm-9">
+        <input type="password" placeholder="New Wallet Pin" class="col-xs-10 col-sm-5" name="newWalletPin" required>
+      </div><br>
+      <br>
+
+      Confirm Pin for E Wallet:<br>
+      <div class="col-sm-9">
+        <input type="password" placeholder="Confirm Wallet Pin" class="col-xs-10 col-sm-5" name="confirmWalletPin" required>
+      </div><br>
+      <br>
+
+      Enter Your Security Question : <br>
+      <div class="col-sm-9">
+        <textarea name="securityQuestion" placeholder="Enter Your Security Question" rows="2" cols="55" required></textarea><br>
+      </div><br>
+      <br>
+
+      <br>
+      Enter Your Security Question's Answer: <br>
+      <div class="col-sm-9">
+        <textarea name="securityQuestionAnswer" placeholder="Enter Your Security Question Answer" rows="2" cols="55" required></textarea><br>
+      </div><br>
+      <br>
+
+
+      <div class="col-md-offset-5 col-md-6">
+        <input type="submit" name="commit" value=" Save " class="btn btn-info">
+      </div>
+
+    </fieldset>
+  </form>
+</div>
+
 
 
 <?php include 'Temp/Footer.php'; ?>

@@ -1,21 +1,27 @@
- <?php 
-		    $walletPin = $_POST['walletPin'];      
-      
+ <?php
+  if(isset($_POST['submit']))
+  {
+      $walletPin = $_POST['walletPin'];
+
       //database connection
       $conn= new mysqli('localhost','root','','test');
       if ($conn->connect_error)
         {
           die('Connection Failed : '.$conn->connect_error);
         }
-      else {
-        $stmt = $conn->prepare("insert into off_Transaction(walletPin) values(?) ");
-        $stmt->bind_param("i",$walletPin);
-        $stmt->execute();
-        echo "Transaction Stopped Successfully";
-        $stmt->close();
-        $conn->close();
-      }
+      else 
+        {
+          $stmt = $conn->prepare("insert into off_Transaction(walletPin) values(?) ");
+          $stmt->bind_param("i",$walletPin);
+          $stmt->execute();
+          echo "Transaction Stopped Successfully";
+          $stmt->close();
+          $conn->close();
+        }
 
+
+  }
+		  
   ?>
 
 
@@ -28,17 +34,21 @@
 
 
   <form action="Off_Transaction.php" method="POST">
-        
+
          <fieldset>
-
-
-                <h2>Enter Your E_Wallte Pin to Stop transaction</h2> 
+              <div class="infoBoxOffTransaction">
+                <div class="page-header"><h2>Enter Your E_Walltet Pin to Stop transaction</h2></div>
+                <p>
                 E_Wallet Pin :
-                <input type="Password" name="walletPin" required><br>
-                Note : By pressing submit you will be no loger further avaiable for transaction<br>
-                <input type="submit" value="Submit"><br>
+                <input type="Password" name="walletPin" required>
+                </p>
+                <p>Note : By pressing submit you will be no loger further avaiable for transaction</p>
+              </div>
 
-            
+
+              <div class="col-md-offset-5 col-md-6">
+                  <input type="submit" name="commit" value=" Off_Transaction " class="btn btn-info">
+              </div>
 
         </fieldset>
   </form>

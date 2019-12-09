@@ -1,7 +1,7 @@
 
-<?php 
+<?php
     $name = "Fahad";
-    $studentId="1721277"; 
+    $studentId="1721277";
 ?>
 
 <!-- Html Starts -->
@@ -54,20 +54,20 @@
                                     <div class="profile-contact-links align-left">
                                         <a href="#" class="btn btn-link">
                                             <i class="ace-icon fa fa-cog bigger-120 green"></i>
-                                            <?php echo $studentId; ?>                                     
+                                            <?php echo $studentId; ?>
                                         </a>
 
                                         <a href="#" class="btn btn-link">
                                             <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
-                                            <?php echo $studentId; ?>@northsouth.edu                                   
+                                            <?php echo $studentId; ?>@northsouth.edu
                                         </a>
                                         <a href="#" class="btn btn-link">
                                             <i class="ace-icon fa fa-globe bigger-125 blue"></i>
-                                            Degree: BS in CSE                                        
+                                            Degree: BS in CSE
                                         </a>
                                         <a href="#" class="btn btn-link">
                                             <i class="ace-icon fa fa-book bigger-125 green"></i>
-                                            Curriculum Name: BS in CSE - 130 Credit Curriculum                                        
+                                            Curriculum Name: BS in CSE - 130 Credit Curriculum
                                         </a>
                                     </div>
 
@@ -88,13 +88,13 @@
                                     </div>
 
                                 </div>
-                               
+
                             </div>
 
-                           
 
-                              
-                                
+
+
+
                             </div>
                         </div>
                     </div>
@@ -107,4 +107,3 @@
 
 
 <!-- Html Endss -->
-

@@ -72,7 +72,7 @@
 		</tr>
 	</table>
 
-	
+
 <?php include 'Temp/Footer.php'; ?>
 
 
