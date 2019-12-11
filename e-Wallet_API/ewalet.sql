@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 11:42 AM
+-- Generation Time: Dec 11, 2019 at 12:42 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.6
 
@@ -165,13 +165,12 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`nsuId`, `name`, `hasPass`, `address`, `secQues`, `ans`) VALUES
-(12212777, 'Stf 1', 'JadduMiya1234', 'Mirpur 2', '', ''),
-(17213142, 'Sir', 'anik1234', 'Mirpur10', 'qstnnn', '$2y$10$RUjljhEyy9cdU.WnJKl07.hEPZ1xm/4wGTREGbjvNuTy/0B2KDy5u'),
+(123452, 'KAsundi', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 'NSU campus', 'Qstn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
+(12212777, 'Stf 1', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur 2', 'qn', '$2y$10$n2en5/UrMszwA1AwVHffVub39VDiJrmOuXdrne9bQEsfFJ3wNz4Hq'),
+(17213142, 'Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur10', 'qstnnn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
 (17222342, 'Sir Sir', 'LadduMiya1234', 'Mirpur100', '', ''),
-(1221277042, 'Laddu', 'Laddu1234', 'Mirpur', '', ''),
-(1521277032, 'Nut boltu', 'nutboltu!789', 'chander desh', '', ''),
-(1721277042, 'Amik', 'amik1234', 'Mirpur', '', ''),
-(1722231042, 'Artful', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'chander desh', 'Name', 'Shipu');
+(1721277042, 'Amik', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur', '', ''),
+(1722231042, 'Artful', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'chander desh', 'Name', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW');
 
 -- --------------------------------------------------------
 
@@ -190,8 +189,10 @@ CREATE TABLE `wallet` (
 --
 
 INSERT INTO `wallet` (`nsuId`, `hashPin`, `onOrOf`) VALUES
-(17213142, '$2y$10$Zi4nDqq4ifGYDx9rgxOT8Ox.ybtt7TlzemCao80x0xbvcLBWbC.0a', 1),
-(1722231042, '$2y$10$Qq7G6xqO1kpC4ALpu.x53e.KiZ6ICohv6.K5ZW5q2BH100KJo4Lku', 1);
+(123452, '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 1),
+(12212777, '$2y$10$LsfO4SvWgj/bzL/gkiiWVOPIzgpZf2eHIoNQ4NavfTC9M9xElI9au', 1),
+(17213142, '$2y$10$OMC/dM7DGAnTap9YqQg80O5WcKyi8SKCrANYBA.gif/5ZhYgNYHqy', 1),
+(1722231042, '$2y$10$IMHEpQ7UsNClyD9tvhwjVe8dtxEManP4n2sW5fUKch9//drY0wRbm', 1);
 
 --
 -- Indexes for dumped tables

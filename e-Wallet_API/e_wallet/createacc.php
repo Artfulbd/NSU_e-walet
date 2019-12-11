@@ -37,6 +37,7 @@
         //print_r($res);
         if($res != null && $res[0]['ans'] == '' && password_verify($data->pass, $res[0]['hasPass'])){
             $name = $res[0]['name'];
+            
             $xData = new purData;    // make post req to notify bank
             $load = [
                 'key' => "rds api key",
@@ -45,6 +46,7 @@
                 ];
                 // making post request
             $status = $xData->make_req($xData->get_create_url(), $load );
+
             if($status == 'success'){  //means bank excepted
                 // rds table entry
                 $hashAns = password_hash($data->ans,PASSWORD_DEFAULT);

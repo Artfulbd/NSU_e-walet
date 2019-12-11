@@ -883,6 +883,9 @@ public class SecondFile extends JFrame {
 						}else if(pc.getApires().equals("error")) {
 							lblInvalid.setText("Error");
 							txtprb.setVisible(true);
+						}else if(pc.getApires().equals("Insufficient balance")) {
+							lblInvalid.setText("Insufficient balance");
+							txtprb.setVisible(true);
 						}else {
 							txtprb.setVisible(true);
 						}

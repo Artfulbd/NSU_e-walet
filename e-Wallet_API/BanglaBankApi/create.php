@@ -8,10 +8,10 @@
     include_once '../personal/connection.php';
 
     $kit = new tools();
-    $conObg = new ConnectTo('wallet');
-    $link = $conObg->giveLink();
+    $conObg = new ConnectTo('bank');
+    $linkk = $conObg->giveLink();
     $data = json_decode(file_get_contents("php://input"));
-    if($link == null){
+    if($linkk == null){
         http_response_code(404);
         echo json_encode(array("status" => "Connection problem on server"));
     }else if($data == null || !property_exists($data, 'id') ||
@@ -23,33 +23,36 @@
         echo "You  fool, Get Lost";
     }
     else{ // do everything here, key is needed to intify request source. 
+        //make a fake transaction with balence 0 for every client ID creation
+
+        mysqli_autocommit($linkk, false);
+        $prb = false;
+        $qry = "INSERT INTO `user_map`( `name`, `gId`) VALUES ('$data->name',$data->id);";
+        $res = mysqli_query($linkk, $qry);
+        if($res){
+            $qry = "SELECT clId FROM user_map WHERE gId = $data->id";
+            $res = mysqli_query($linkk, $qry);
+        }else $prb = true;
+
+        if(!$prb){
+            $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
+            $trid = $kit->gen_trid();
+            $currTime = date('Y-m-d H:i:s a', time());
+            $id = $res[0]['clId'];
+            $qry = "INSERT INTO `tr_his`(`uClId`, `trid`, `des`, `deb`, `crd`, `bal`, `trDate`)
+                    VALUES  ($id,'$trid','initial',0,0,0,'$currTime')";
+            $res = mysqli_query($linkk, $qry);
+        }
+        if(!$prb && $res){
+            mysqli_commit($linkk);
             http_response_code(200);
             echo "success";
-
-
-
-
-
-
-
-
-
-
-
-
-
-       /* $qry = "SELECT name, address, hasPass FROM `user_data` WHERE nsuId = $data->id 
-                                       and
-              (SELECT count(*) FROM `req_data` WHERE appKey = $data->key) = 1";
-       // this qry will check app key, if valid then check id
-       
-        $res = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
-        if($res != null){
-            
-            
-        }else{  // invalid app key
-            $conObg->detach();
-             echo "Get Lost, you fool.";
-        }*/
+        } else {
+            mysqli_roollback($linkk);
+            http_response_code(200);
+            echo "try again later";
+        }
+        
+        $conObg->detach();
     }
 ?>

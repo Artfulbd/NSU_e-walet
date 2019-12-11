@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 11:43 AM
+-- Generation Time: Dec 11, 2019 at 12:42 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.6
 
@@ -38,6 +38,17 @@ CREATE TABLE `tr_his` (
   `trDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tr_his`
+--
+
+INSERT INTO `tr_his` (`uClId`, `trid`, `des`, `deb`, `crd`, `bal`, `trDate`) VALUES
+(1, '732ae2efe32c3eb', 'initial', 0, 0, 0, '2019-12-01 06:53:35'),
+(1, 'a1d1861a37d8582', 'e-Wallet', 110, 0, 390, '2019-12-09 11:46:00'),
+(10, 'b635bbe42634d77', 'initial', 0, 0, 0, '2019-12-11 06:55:30'),
+(1, 'f77733b766711d3', 'e-Wallet', 110, 0, 500, '2019-12-09 11:42:08'),
+(15, 'fba2a307f559e62', 'initial', 0, 0, 0, '2019-12-11 07:09:46');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +60,15 @@ CREATE TABLE `user_map` (
   `name` varchar(30) NOT NULL,
   `gId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_map`
+--
+
+INSERT INTO `user_map` (`clId`, `name`, `gId`) VALUES
+(1, 'one', 1722231042),
+(10, 'KAsundi', 123452),
+(15, 'Stf 1', 12212777);
 
 --
 -- Indexes for dumped tables
@@ -75,7 +95,7 @@ ALTER TABLE `user_map`
 -- AUTO_INCREMENT for table `user_map`
 --
 ALTER TABLE `user_map`
-  MODIFY `clId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

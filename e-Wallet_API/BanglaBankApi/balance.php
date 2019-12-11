@@ -18,33 +18,23 @@
         !$mykit->test_input($req->key) ){
          echo "Just wait, local police will approach you anytime.";
     }else{
-            $qry = "SELECT trDate, des, deb, crd, bal, trid 
-            FROM `tr_his` t join user_map u on t.uClId = u.clId 
-            WHERE u.gId = $req->id and des <> 'initial' ORDER BY t.trDate DESC";
+            $qry = "SELECT bal FROM `tr_his` t join user_map u on t.uClId = u.clId 
+            WHERE u.gId = $req->id and 
+            trDate = (SELECT max(trDate) FROM `tr_his` t join user_map u 
+                    on t.uClId = u.clId 
+                    WHERE u.gId = $req->id)";
             $res = mysqli_query($link, $qry);
             if($res){
+                http_response_code(200);
                 $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
-                if(count($res)){
-                    http_response_code(200);
-                    print_r($res);
-                }else{
-                    echo "Just wait, local police will approach you anytime.";
-                }
+                if($res)echo $res[0]['bal'];
+                else echo "Just wait, local police will approach you anytime.";
                 
             }else{
                 http_response_code(200);
                 echo "sorry try again later";
             }           
             $conObg->detach();     
-            
     }
-
-    /*foreach ($res as $row)
-            {
-                //print_r($row['trDate']);
-                echo "Date".$row['trDate']." Dis: ".$row['des']." Amount ".$row['bal']." Trid".$row['trid']."<br>";
-            }*/
-    
-  
 ?>
 

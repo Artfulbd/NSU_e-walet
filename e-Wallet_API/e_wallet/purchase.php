@@ -68,28 +68,36 @@
                             'clientTo' => $to ,
                             'am' => $am
                             ];
-                            //making post request
-                      // $trid = $xData->purchase_req($url, $key, $from, $to, $am, $load );
-                      $trid = $xData->make_req($xData->get_purchaser_url(), $load );
-                       $qry = "INSERT INTO `history`(`trid`, `list`) VALUE ('$trid','$xData->list')"; 
-                       $count = 0;
-                       do{
-                        $hold = mysqli_query($link, $qry);
-                        if($count>3)break;
-                        $count = $count+1;
-                       }while($hold==1);
-                       
-                       if($count == 4){
-                           $hold = $trid."  ".$xData->list;
-                           $qry = "INSERT INTO `manual_job`(`qry`) VALUES ('$hold')";
-                           mysqli_query($link, $qry);
+                       //making post request
+                       $trid = $xData->make_req($xData->get_purchaser_url(), $load );
+                      if(strlen($trid) == 15){
+                        $qry = "INSERT INTO `history`(`trid`, `list`) VALUE ('$trid','$xData->list')"; 
+                        $count = 0;
+                        do{
+                         $hold = mysqli_query($link, $qry);
+                         if($count>3)break;
+                         $count = $count+1;
+                        }while($hold==1);
+                        
+                        if($count == 4){
+                            $hold = $trid."  ".$xData->list;
+                            $qry = "INSERT INTO `manual_job`(`qry`) VALUES ('$hold')";
+                            mysqli_query($link, $qry);
+                             http_response_code(200);
+                             echo json_encode(array("status" => "manual","trid" => $trid));
+                        }else{
+                             http_response_code(200);
+                             echo json_encode(array("status" => "ok","trid" => $trid));
+                        }
+
+                      }else if(strcmp($trid,"Insufficient balance") == 0){
                             http_response_code(200);
-                            echo json_encode(array("status" => "manual","trid" => $trid));
-                       }else{
-                            http_response_code(200);
-                            echo json_encode(array("status" => "ok","trid" => $trid));
-                       }
-                       $conObg->detach();  //closing link
+                            echo json_encode(array("status" => "Insufficient balance"));
+                      }else {
+                        http_response_code(200);
+                        echo json_encode(array("status" => "invalid"));
+                      }                       
+                      
                     }else {
                         http_response_code(200);
                         echo json_encode(array("status" => "invalid"));
@@ -98,11 +106,9 @@
                     http_response_code(200);
                     echo json_encode(array("status" => "error"));
                 }
-
-
-
-            }
-            else echo "Get Lost";
+               
+            }else echo "Get Lost";
+        $conObg->detach();  //closing link
 
         
     }

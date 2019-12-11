@@ -26,9 +26,11 @@
                                        and
               (SELECT count(*) FROM `req_data` WHERE appKey = $data->key) = 1";
        // this qry will check app key, if valid then check id
+       $hold = mysqli_query($link, $qry);
 
-        $res = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
-        if($res != null && password_verify($data->pass, $res[0]['hashPin'])){
+       if($hold)$res = mysqli_fetch_all($hold, MYSQLI_ASSOC);
+
+        if($hold && $res != null && password_verify($data->pass, $res[0]['hashPin'])){
             $conObg->detach();
             
             $key = 1234; // set api key here;
@@ -38,7 +40,6 @@
                 'id' => $data->id
                 ];
                 //making post request
-          $bankRes[] = array();
           $bankRes = $xData->make_req($xData->get_history_url(), $load );
           
           http_response_code(200);
@@ -48,7 +49,7 @@
             
         }else{  // invalid app key
             $conObg->detach();
-             echo "Get Lost, you fool.";
+             echo "Get Lost";
         }
     }
 ?>
