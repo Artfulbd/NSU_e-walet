@@ -14,35 +14,42 @@
     if($link == null){
         http_response_code(404);
         echo json_encode(array("status" => "Connection problem on server"));
-    }else if($data == null || !property_exists($data, 'id') || !property_exists($data, 'pass') || ! property_exists($data, 'key')){
+    }else if($data == null || !property_exists($data, 'id') || !property_exists($data, 'key') || !property_exists($data, 'pass') ){
         $conObg->detach();
         echo "Get Lost";
-    }else if( !$kit->test_input($data->id) || !$kit->test_input($data->pass) || !$kit->test_input($data->key) ){
+    }else if( !$kit->test_input($data->id) || !$kit->test_input($data->key) || !$kit->test_input($data->pass) ){
         $conObg->detach();     
         echo "You  fool, Get Lost";
     }
     else{ // do everything here, key is needed to intify request source.        
-        $qry = "SELECT name, address, hasPass, secQues as 'qs' FROM `user_data` WHERE nsuId = $data->id 
-                                       and
-              (SELECT count(*) FROM `req_data` WHERE appKey = $data->key) = 1";
-       // this qry will check app key, if valid then check id
+        $qry = "SELECT w.hashPin,  u.ans, u.hasPass
+        FROM `wallet` w join user_data u 
+        on w.nsuId = u.nsuId WHERE w.nsuId = $data->id
+        and (SELECT count(*) FROM `req_data` WHERE appKey = $data->key) = 1";
 
+       // this qry will check app key, if valid then check id
         $res = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
         if($res != null){
+            // verifying pin and security answer
             if(password_verify($data->pass, $res[0]['hasPass'])){
-                $qry = "SELECT onOrOf FROM `wallet` WHERE nsuId = $data->id ";
-                $res1 = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
                 $conObg->detach();
-                $response = array(
-                    "status"=> "ok",
-                    "name" => $res[0]['name'],
-                    "add"  => $res[0]['address'],
-                    "qstn" => $res[0]['qs'],
-                    "flag" => ($res1 == null)? null : $res1[0]['onOrOf']
-                );
+                $load = [
+                    'key' => "some bank key",
+                    'id' => $data->id
+                    ];
+               //making post request
+               $xData = new purData; 
+               $balance = $xData->make_req($xData->get_balance_url(), $load );
+               $balance = trim($balance);
+
                 http_response_code(200);
-                echo json_encode($response);
-            }else{
+                echo json_encode(array(
+                    "status"=> "ok",
+                    "balance" => $balance
+                ));
+              
+            }else{ 
+                $conObg->detach();
                 http_response_code(200);
                 echo json_encode(array('status'=> 'invalid'));
             }
@@ -50,7 +57,7 @@
             
         }else{  // invalid app key
             $conObg->detach();
-             echo "Get Lost, you fool";
+            echo "Get Lost, you fool.";
         }
     }
 ?>

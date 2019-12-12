@@ -26,7 +26,8 @@
                 $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
                 if(count($res)){
                     http_response_code(200);
-                    print_r($res);
+                    //print_r($res);
+                    echo json_encode($res);
                 }else{
                     echo "Just wait, local police will approach you anytime.";
                 }

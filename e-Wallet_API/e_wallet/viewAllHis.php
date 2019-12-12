@@ -13,7 +13,7 @@
     $data = json_decode(file_get_contents("php://input"));
     if($link == null){
         http_response_code(404);
-        echo json_encode(array("status" => "Connection problem on server"));
+        echo "Connection problem on server";
     }else if($data == null || !property_exists($data, 'id') || !property_exists($data, 'key') || !property_exists($data, 'pass')){
         $conObg->detach();
         echo "Get Lost";
@@ -43,10 +43,8 @@
           $bankRes = $xData->make_req($xData->get_history_url(), $load );
           
           http_response_code(200);
-          //echo json_encode($bankRes);
           print_r($bankRes);
 
-            
         }else{  // invalid app key
             $conObg->detach();
              echo "Get Lost";

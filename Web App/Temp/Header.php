@@ -1,3 +1,4 @@
+<?php include_once 'temp/global.php'?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,13 @@
     <link rel="stylesheet" href="css/bootstrap/chosen.min.css" />
     <link rel="stylesheet" href="css/bootstrap/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="css/bootstrap/main.css" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     <link rel="stylesheet" type="text/css" href="css/Change_E_Wallet_Pin.css">
     <link rel="stylesheet" type="text/css" href="css/Create_E_Wallet.css">
     <link rel="stylesheet" type="text/css" href="css/Check_Balance.css">
@@ -46,7 +54,7 @@
             <ul class="nav nav-list">
                 <li class="hover blank" style="width:189px">&nbsp;</li>
                 <li class="hover">
-                    <a href="https://rds3.northsouth.edu/index.php/students/landing">
+                    <a href="Home.php">
                         <i class="menu-icon fa fa-home"></i>
                         <span class="menu-text">Home</span>
                     </a>
@@ -65,16 +73,8 @@
 
                     <ul class="submenu">
                         <li class="hover">
-                            <a href="https://rds3.northsouth.edu/index.php/students/profile?token=McLlIjYfvpOWf8BNCpD9NA%3D%3D">
+                            <a href="#">
                                 <i class="menu-icon fa fa-caret-right"></i> Student Information
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="hover">
-                            <a href="https://rds3.northsouth.edu/index.php/common/change_password">
-                                <i class="menu-icon fa fa-caret-right"></i> Change Password
                             </a>
 
                             <b class="arrow"></b>
@@ -93,43 +93,49 @@
                     <b class="arrow"></b>
 
                     <ul class="submenu">
+                    <?php
+                    $status = $_SESSION['flag'] == 1?"Off":"On";
+                    $site = $status."_Transaction.php";
+                    if($_SESSION['qstn'] == '')echo '
                         <li class="hover">
                             <a href="Create_E_Wallet.php">
                                 <i class="menu-icon fa fa-caret-right"></i> Create E_Wallet
                             </a>
 
                             <b class="arrow"></b>
-                        </li>
-
-                        <li class="hover">
-                            <a href="Off_Transaction.php">
-                                <i class="menu-icon fa fa-caret-right"></i> Off Transaction
+                        </li> '; 
+                        
+                       else echo "
+                        <li class='hover'>
+                            <a href='$site'>
+                                <i class='menu-icon fa fa-caret-right'></i> $status Transaction
                             </a>
 
-                            <b class="arrow"></b>
+                            <b class='arrow'></b>
                         </li>
-                        <li class="hover">
-                            <a href="Check_Balance.php">
-                                <i class="menu-icon fa fa-caret-right"></i> Check Balance
+                        <li class='hover'>
+                            <a target='_blank' href='Check_Balance.php'>
+                                <i class='menu-icon fa fa-caret-right'></i> Check Balance
                             </a>
 
-                            <b class="arrow"></b>
+                            <b class='arrow'></b>
                         </li>
-                        <li class="hover">
-                            <a href="Transaction_History.php">
-                                <i class="menu-icon fa fa-caret-right"></i> Transaction History
+                        <li class='hover'>
+                            <a href='Transaction_History.php'>
+                                <i class='menu-icon fa fa-caret-right'></i> Transaction History
                             </a>
 
-                            <b class="arrow"></b>
+                            <b class='arrow'></b>
                         </li>
-                        <li class="hover">
-                            <a href="Change_E_Wallet_Pin.php">
-                                <i class="menu-icon fa fa-caret-right"></i> Change E_Wallet Pin
+                        <li class='hover'>
+                            <a href='Change_E_Wallet_Pin.php'>
+                                <i class='menu-icon fa fa-caret-right'></i> Change E_Wallet Pin
                             </a>
 
-                            <b class="arrow"></b>
-                        </li>
-
+                            <b class='arrow'></b>
+                        </li>"; 
+                        
+                        ?>
 
 
                     </ul>
@@ -140,7 +146,7 @@
 
 
                 <li class="hover">
-                    <a href="https://rds3.northsouth.edu/index.php/common/logout">
+                    <a href="home.php?out=true">
                         <i class="menu-icon fa fa-power-off"></i>
                         <span class="menu-text">Logout</span>
 

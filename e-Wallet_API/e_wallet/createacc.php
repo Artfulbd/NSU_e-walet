@@ -35,6 +35,9 @@
           not EXISTS (SELECT * FROM `wallet` WHERE nsuId = $id)";
         $res = mysqli_fetch_all(mysqli_query($link, $qry), MYSQLI_ASSOC);
         //print_r($res);
+        $res = mysqli_query($link, $qry);
+        if($res){
+            $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
         if($res != null && $res[0]['ans'] == '' && password_verify($data->pass, $res[0]['hasPass'])){
             $name = $res[0]['name'];
             
@@ -61,6 +64,7 @@
                 $conObg->detach();
                 http_response_code(200);
                 echo json_encode(array('status'=> 'ok'));
+                
             
 
 
@@ -73,6 +77,9 @@
         else{
             echo "Get lost";
         }
+
+        }else echo "Try again later";
+        
     }
 
         

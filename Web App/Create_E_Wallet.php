@@ -1,61 +1,106 @@
  <?php
-    if(isset($_POST['commit']))
-    {
-      $rdsPass1 = $_POST['rdsPass1'];
-      $newWalletPin1 = $_POST['newWalletPin1'];
-      $confirmWalletPin1 = $_POST['confirmWalletPin1'];
+    session_start();
+    if($_SESSION['name'] == ''){
+      header('Location: index.php');
+    }   
+    $ansEr = "";
+    $pinEr = "";
+  if(isset($_POST['submit']))
+  {
+      $pin1 = $_POST['pin1'];
+      $pin2 = $_POST['pin2'];
+      $ans1 = $_POST['ans1'];
+      $ans2 = $_POST['ans2'];  
+      if(strlen($pin1) != 4){
+        $pinEr = "Pin length must be 4 digit long !";
+      }else if(!is_numeric($pin1)){
+        $pinEr = "Pin can only be number!";
+      } else if(strcmp($pin1,$pin2) == 0 && strcmp($ans1,$ans2) == 0){  // means valid
+        // call here
+        include_once 'Temp/global.php';
+        $load = [
+          'key' => $key,
+          'id' => $_SESSION['id'] ,
+          'pass' =>$_SESSION['pass'],
+          'pin' => $_POST['pin1'],
+          'qstn'  => $_POST['qstn'] ,
+          'ans' =>$_POST['ans1']
+        ];
+        $res = make_req($createURL, $load );                     
+        if(strlen($res) == 15){
+          $res = json_decode($res, true);
+          if(strcmp($res['status'],'ok') == 0){
+            $_SESSION['success'] = "e-Wallet account ceated successfully";
+            $_SESSION['flag'] = 1;
+            $_SESSION['qstn'] =  $_POST['qstn'];
+          }else{
+            $_SESSION['success'] = $res['status'];
+          }
+            
+        }else{
+          $_SESSION['success'] = $res;
+        } // end of valid
+
+        header('Location: home.php');
+      }else if(strcmp($pin1,$pin2) != 0 && strcmp($ans1,$ans2) == 0){
+          $pinEr = "Pin doesn't match !";
+      }
+      else if(strcmp($pin1,$pin2) == 0 && strcmp($ans1,$ans2) != 0){
+          $ansEr = "Answer doesn't match !";
+      }else{
+          $ansEr = "Answer doesn't match !";
+          $pinEr = "Pin doesn't match !";
+      }
+}
 
 
-      //database connection
-      $conn= new mysqli('localhost','root','','test');
-      if ($conn->connect_error)
-        {
-          die('Connection Failed : '.$conn->connect_error);
-        }
-      else 
-        {
-          $stmt = $conn->prepare("insert into create_e_wallet(rdsPass,newWalletPin,confirmWalletPin) values(?,?,?) ");
-          $stmt->bind_param("sii",$rdsPass1,$newWalletPin1,$confirmWalletPin1);
-          $stmt->execute();
-          echo "Wallet Created Successfully";
-          $stmt->close();
-          $conn->close();
-        }
-    }
-      	
-
-  ?>
+?>
 
 
 
 <!-- Html Starts -->
 
 
-<?php include 'Temp/Header.php'; ?>
+<?php include_once 'Temp/Header.php'; ?>
 
 
 
-<form action="Create_E_Wallet.php" method="POST" autocomplete="on">
-<fieldset>
-<div class="infoBox" align="center">
-  <div class="page-header">
+<form action="Create_E_Wallet.php" method="POST">
+  <fieldset>
+    <div class="infoBox">
+      <div class="page-header">
         <h1>Sign up for E Wallet</h1>
-  </div>
-  Enter Your RDS Password:<br>
-  <input type="Password" name="rdsPass1" required><br>
-  Enter Your New Pin for E Wallet:<br>
-  <input type="Password" name="newWalletPin1" required><br>
-  Confirm Pin for E Wallet:<br>
-  <input type="Password" name="confirmWalletPin1" autocomplete="off" required><br> 
-  <br>
-  <p><input type="submit" name="commit" value=" Save " class="btn btn-info"></p>
-</div>
-  <br>
-	
-        
-  
+      </div>
+      
+      Enter Your Pin for E Wallet:<br>
+      <input type="Password" placeholder="must be 4 digit" name="pin1" required>
+      <br>
+      <br>
+      Confirm Pin :<br>
+      <input type="Password" placeholder="must be 4 digit"  name="pin2" required> <div class:"noti"> <?php echo $pinEr;?> </div>
+      <br> 
+      <br>
+      Enter Your Security Question :<br>
+      <textarea name="qstn" placeholder="Enter Your Security Question" rows="2" cols="55"  required></textarea>
+      <br>
+      <br>
+      Enter Your Security Question's Answer: <br>
+      <textarea name="ans1" placeholder="Enter answer here" rows="2" cols="55"  required></textarea>
+      <br>
+      <br>
+      Re-enter Security Question's Answer: <br>
+      <textarea name="ans2" placeholder="Re-nter answer here" rows="2" cols="55"  required></textarea>
+      <div class:"noti"><?php echo $ansEr;?></div>
+      <br>
+      <br>
+      <p><input type="submit" name="submit" value=" Save " class="btn btn-info"></p>
+    </div>
+    <br>
 
-</fieldset>
+
+
+
+  </fieldset>
 </form>
 
 <?php include 'Temp/Footer.php'; ?>

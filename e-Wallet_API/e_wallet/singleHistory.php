@@ -13,7 +13,7 @@
     $data = json_decode(file_get_contents("php://input"));
     if($link == null){
         http_response_code(404);
-        echo json_encode(array("status" => "Connection problem on server"));
+        echo "Connection problem on server";
     }else if($data == null || !property_exists($data, 'id') || !property_exists($data, 'key') || !property_exists($data, 'pass') || !property_exists($data, 'trid')){
         $conObg->detach();
         echo "Get Lost";
@@ -44,7 +44,7 @@
                         
         }else{  // invalid app key
             $conObg->detach();
-             echo "Get Lost, you fool.";
+            echo "You  fool, Get Lost";
         }
     }
 ?>

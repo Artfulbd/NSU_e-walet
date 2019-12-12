@@ -16,7 +16,7 @@
         !property_exists($req, 'key')       ||
         !$mykit->test_input($req->id)  ||
         !$mykit->test_input($req->key) ){
-         echo "Just wait, local police will approach you anytime.";
+         echo "Just wait, local police will approach you anytime";
     }else{
             $qry = "SELECT bal FROM `tr_his` t join user_map u on t.uClId = u.clId 
             WHERE u.gId = $req->id and 
@@ -27,7 +27,8 @@
             if($res){
                 http_response_code(200);
                 $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
-                if($res)echo $res[0]['bal'];
+                $bal = $res[0]['bal'];
+                if($res)echo $bal;
                 else echo "Just wait, local police will approach you anytime.";
                 
             }else{
