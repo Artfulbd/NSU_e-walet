@@ -30,7 +30,7 @@
           //valid
           $res = json_decode($res, true);
           if(strcmp($res['status'],'ok') == 0){
-            $_SESSION['success'] = "e-Wallet transaction switched off successfully";
+            $_SESSION['success'] = "e-Wallet transaction switched on successfully";
             $_SESSION['flag'] = 1;
             header('Location: home.php');
           }else if(strcmp($res['status'],'invalid') == 0){
@@ -56,7 +56,7 @@
 <?php include 'Temp/Header.php'; ?>
 
 
-<form action="On_Transaction.php" method="POST">
+<form action="#" method="POST">
 
  <fieldset>
         <div class="infoBoxOffTransaction">

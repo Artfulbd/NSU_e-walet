@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2019 at 12:42 PM
+-- Generation Time: Dec 13, 2019 at 05:53 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.6
 
@@ -55,6 +55,14 @@ CREATE TABLE `history` (
   `trid` varchar(18) NOT NULL,
   `list` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`trid`, `list`) VALUES
+('01694f17be3b621', ' Time 23:10  Date:12.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          2X10  =  20<br> Burger       1X90  =  90<br>------------------------------<br> Total payable amount:110 '),
+('9a0ce027cc2df47', ' Time 12:11  Date:13.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Coffee       2X25  =  50<br> Set Menu     1X145 =  145<br>------------------------------<br> Total payable amount:195 ');
 
 -- --------------------------------------------------------
 
@@ -168,8 +176,8 @@ INSERT INTO `user_data` (`nsuId`, `name`, `hasPass`, `address`, `secQues`, `ans`
 (123452, 'KAsundi', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 'NSU campus', 'Qstn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
 (12212777, 'Stf 1', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur 2', 'qn', '$2y$10$n2en5/UrMszwA1AwVHffVub39VDiJrmOuXdrne9bQEsfFJ3wNz4Hq'),
 (17213142, 'Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur10', 'qstnnn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
-(17222342, 'Sir Sir', 'LadduMiya1234', 'Mirpur100', '', ''),
-(1721277042, 'Amik', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur', '', ''),
+(17222342, 'Sir Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur100', '', ''),
+(1721277042, 'Amik', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur', 'asdf', '$2y$10$jX2aGaaap8TwJAVBeIxM/e2NHWn0wN4Uo3Vt/B2CdmKYLwuyWeqjq'),
 (1722231042, 'Artful', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'chander desh', 'Name', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW');
 
 -- --------------------------------------------------------
@@ -192,6 +200,7 @@ INSERT INTO `wallet` (`nsuId`, `hashPin`, `onOrOf`) VALUES
 (123452, '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 1),
 (12212777, '$2y$10$LsfO4SvWgj/bzL/gkiiWVOPIzgpZf2eHIoNQ4NavfTC9M9xElI9au', 1),
 (17213142, '$2y$10$OMC/dM7DGAnTap9YqQg80O5WcKyi8SKCrANYBA.gif/5ZhYgNYHqy', 1),
+(1721277042, '$2y$10$9IVfRdz10hbX.ks0qCRje.rWtGiHLeZrCxwfcA7Zjalh/ot4JrIem', 0),
 (1722231042, '$2y$10$IMHEpQ7UsNClyD9tvhwjVe8dtxEManP4n2sW5fUKch9//drY0wRbm', 1);
 
 --

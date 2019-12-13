@@ -57,7 +57,7 @@
     <h1>Change Your E_Wallet Pin</h1>
   </div>
 
-  <form action="Change_E_Wallet_Pin.php" method="post" >
+  <form action="#" method="post" >
     <fieldset>
 
 

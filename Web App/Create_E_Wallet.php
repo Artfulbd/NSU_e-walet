@@ -65,7 +65,7 @@
 
 
 
-<form action="Create_E_Wallet.php" method="POST">
+<form action="#" method="POST">
   <fieldset>
     <div class="infoBox">
       <div class="page-header">

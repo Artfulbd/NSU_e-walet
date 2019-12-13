@@ -94,7 +94,7 @@
                                 <img src="imgs/login.png" width="80" height="80" style="margin-top:10px;">
                             </div>
                             <div class="col-md-9">
-                                <form method="post" action="index.php">
+                                <form method="post" action="#">
 
                                     <p class="headings">NSU Portal : Login<br /><br /></p>
                                     <div class="row">

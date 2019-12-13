@@ -55,7 +55,7 @@
 <?php include 'Temp/Header.php'; ?>
 
 
-<form action="Off_Transaction.php" method="POST">
+<form action="#" method="POST">
 
  <fieldset>
         <div class="infoBoxOffTransaction">

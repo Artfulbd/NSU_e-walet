@@ -50,7 +50,7 @@
                             <div class="col-xs-12 col-sm-4 center">
                                 <div>
                                     <span class="profile-picture"><img id="avatar" class="editable img-responsive"
-                                    alt="Avatar" src="https://rds3.northsouth.edu/assets/images/avatars/profile-pic.jpg"
+                                    alt="Avatar" src="imgs/profile-pic.jpg"
                                     width="160"/></span>
                                     <div class="space-4"></div>
                                     <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">

@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="footer-inner">
         <div class="footer-content">
-            <span class="bigger-120 blue bolder mleft">Developed & Maintained By Full Of BUGS.</span>
+            <span class="bigger-120 blue bolder mleft">Developed & Maintained By Full_Of_BUGS.</span>
         </div>
     </div>
 </div>

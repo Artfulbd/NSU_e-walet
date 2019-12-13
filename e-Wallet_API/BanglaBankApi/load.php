@@ -45,7 +45,7 @@
             http_response_code(200);
             if(!$prb){
                 mysqli_commit($link);
-                echo "Balance $req->am successfully loaded to account";
+                echo "success";
             }else{
                 mysqli_rollback($link);
                 echo "sorry";

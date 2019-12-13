@@ -57,7 +57,7 @@ include_once 'Temp/Header.php'; ?>
                     $i = $i + 1;    
                 }
         echo "</table>";
-        }echo "<h1>Nothing to show</h2>";
+        }else echo "<h1>Nothing to show</h2>";
 ?>
 </div>
 
