@@ -1,29 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8;"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        
-        <title>
-            nfb.grayscalehost.com | Login
-        </title>
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
-        <meta name="robots" content="noindex,nofollow" />
-        <script>
-            var tokens = {
-                LOST_PASSWORD: "no" === "yes",
-                TIME: {
-                    current: 1577066587 * 1000,
-                    offset: 86400 * 1000,
-                },
-                AUTH_METHOD: "CMD_LOGIN",
-                QUESTION: "|QUESTION_JSON|",
-                LOGIN_LANGUAGES: "default=en;en=English;",
-                GEO_IP_LANG: "|GEO_IP_LANG|",
-            };
-        </script>
-    <link href="/assets/css/login.css" rel="stylesheet"></head>
-    <body>
-        <div id="login"></div>
-    <script type="text/javascript" src="/assets/login.js"></script></body>
-</html>
+<?php 
+
+	session_start();
+	if($_SESSION['name'] == ''){
+		header('Location: index.php');
+	  }  
+	$balance = 0;
+	include_once 'Temp/global.php';
+        $load = [
+          'key' => $key,
+          'id' =>  $_SESSION['id'],
+          'pass' =>$_SESSION['pass']
+		];
+		$res = make_req($balanceURL, $load ); 
+	    $sz = strlen($res);
+        if($sz == 8 || $sz == 19){// get lost
+          $_SESSION['success'] = "Problem on server, please try again later";
+          header('Location: home.php');
+        }else{
+          //valid
+          $res = json_decode($res, true);
+          if(strcmp($res['status'],'ok') == 0){
+            $balance = $res['balance'];
+          }else if(strcmp($res['status'],'invalid') == 0){
+            $er = "Problem on server";
+          }else{
+            $_SESSION['success'] = $res['status'];
+            header('Location: home.php');
+          }
+
+        }
+
+include 'Temp/Header.php'; 
+?>
+
+
+	<h1 align = "center";>Your current balance is <?php echo $balance ?> taka.</h1><br>
+
+<?php include 'Temp/Footer.php'; ?>
