@@ -11,7 +11,7 @@
     $link = $conObg->giveLink();
     $req = json_decode(file_get_contents("php://input"));
 
-    // set transaction cost here, IT IS IMPORTANT
+    // set transaction cost here(taka), IT IS IMPORTANT
     $cost = 0;
     
     if( $req == null ||
@@ -53,7 +53,7 @@
                     $t_bal = $reqt[0]['bal'];
     
                     //making new balance
-                    $t_bal = $t_bal + $req->am - $cost;
+                    $t_bal = $t_bal + $req->am;
                     $f_bal = $f_bal - $req->am - $cost;
     
                     //checking possibility
@@ -61,7 +61,7 @@
                     if($f_bal > 0){
                         $tridF = $mykit->gen_trid();
                         $tridT = $mykit->gen_trid();
-                        $currTime = date('Y-m-d H:i:s a', time());
+                        $currTime = date('Y-m-d H.i.s', time());
         
                         // making query
                         $qry = "INSERT INTO `tr_his` (`uClId`, `trid`, `des`, `deb`, `crd`, `bal`, `trDate`) 
@@ -77,7 +77,7 @@
                         }else{
                             mysqli_rollback($link);
                             http_response_code(200);
-                            echo "Try again later";
+                            echo "Try again later.";
                         } 
                         
                     }else{

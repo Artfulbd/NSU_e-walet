@@ -4,10 +4,10 @@
         public $sec;
         public $list;
         public $ano;
-        private $purUrl = "http://localhost/eWalletAPI/BanglaBankApi/transaction.php";
-        private $createUrl = "http://localhost/eWalletAPI/BanglaBankApi/create.php";
-        private $historyUrl = "http://localhost/eWalletAPI\BanglaBankApi\history.php";
-        private $balanceUrl = "http://localhost/eWalletAPI\BanglaBankApi\balance.php";
+        private $purUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/transaction.php";
+        private $createUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/create.php";
+        private $historyUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/history.php";
+        private $balanceUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/balance.php";
 
 
         function get_purchaser_url(){

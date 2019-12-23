@@ -1,93 +1,29 @@
- <?php
-    session_start();
-    $er = "";
-    if($_SESSION['name'] == ''){
-      header('Location: index.php');
-    }  
-    if(isset($_POST['commit']))
-    {
-      $pin = $_POST['pin'];
-      $ans = $_POST['ans'];
-      if(!is_numeric($_POST['pin']) || strlen($_POST['pin']) != 4){
-        $er = "Pin must be valid";
-      }else{
-        include_once 'Temp/global.php';
-        $load = [
-          'key' => $key,
-          'id' =>  $_SESSION['id'],
-          'pass' =>$_SESSION['pass'],
-          'pin' => $_POST['pin'],
-          'curr'  => $_SESSION['flag'] ,
-          'ans' =>$_POST['ans']
-        ];
-        $res = make_req($switchURL, $load ); 
-        $sz = strlen($res);
-        if($sz == 8 || $sz == 19){// get lost
-          $_SESSION['success'] = "Problem on server, please try again later";
-          header('Location: home.php');
-        }else{
-          //valid
-          $res = json_decode($res, true);
-          if(strcmp($res['status'],'ok') == 0){
-            $_SESSION['success'] = "e-Wallet transaction switched off successfully";
-            $_SESSION['flag'] = 0;
-            header('Location: home.php');
-          }else if(strcmp($res['status'],'invalid') == 0){
-            $er = "Wrong pin or answer";
-          }else{
-            $_SESSION['success'] = $res['status'];
-            header('Location: home.php');
-          }
-
-        }
-      }
-    }
-    //echo $_SESSION['flag'];
-
-?>
-
-
-
-
-<!-- Html Starts -->
-
-
-<?php include 'Temp/Header.php'; ?>
-
-
-<form action="#" method="POST">
-
- <fieldset>
-        <div class="infoBoxOffTransaction">
-          <h2>Enter Your E_Walltet Pin to Stop transaction</h2>
-          <br>
-          <br>
-          E_Wallet Pin :
-          <br>
-          <input type="Password" name="pin" placeholder='Pin' equired>
-          <div class:"noti"><?php echo $er;?></div>
-          <br>
-          <br>
-          <h1><?php echo $_SESSION['qstn']; ?></h1>
-          Enter your answer: <br>
-          <textarea name="ans" placeholder="Answer" rows="2" cols="55" required></textarea>
-          <br>
-          <br>
-          Note : By pressing submit you will be no loger further available for transaction
-          <br>
-          <br>
-          <div class="col-md-offset-5 col-md-6">
-          <input type="submit" name="commit" value=" Off_Transaction " class="btn btn-info">
-          </div>
-
-        </div>
-
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8;"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         
-</fieldset>
-</form>
-
-<?php include 'Temp/Footer.php'; ?>
-
-
-<!-- Html Endss -->
+        <title>
+            nfb.grayscalehost.com | Login
+        </title>
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+        <meta name="robots" content="noindex,nofollow" />
+        <script>
+            var tokens = {
+                LOST_PASSWORD: "no" === "yes",
+                TIME: {
+                    current: 1577066592 * 1000,
+                    offset: 86400 * 1000,
+                },
+                AUTH_METHOD: "CMD_LOGIN",
+                QUESTION: "|QUESTION_JSON|",
+                LOGIN_LANGUAGES: "default=en;en=English;",
+                GEO_IP_LANG: "|GEO_IP_LANG|",
+            };
+        </script>
+    <link href="/assets/css/login.css" rel="stylesheet"></head>
+    <body>
+        <div id="login"></div>
+    <script type="text/javascript" src="/assets/login.js"></script></body>
+</html>

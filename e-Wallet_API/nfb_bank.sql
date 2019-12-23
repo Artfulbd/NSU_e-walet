@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 13, 2019 at 05:52 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.6
+-- Host: localhost
+-- Generation Time: Dec 22, 2019 at 04:05 PM
+-- Server version: 5.7.27
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bank`
+-- Database: `nfb_bank`
 --
 
 -- --------------------------------------------------------
@@ -44,19 +44,32 @@ CREATE TABLE `tr_his` (
 
 INSERT INTO `tr_his` (`uClId`, `trid`, `des`, `deb`, `crd`, `bal`, `trDate`) VALUES
 (1, '01694f17be3b621', 'NSU e-Wallet. Debit', 110, 0, 1290, '2019-12-12 18:10:13'),
+(10, '044eea3d2bb7d86', 'NSU e-Wallet. Credit', 0, 230, 845, '2019-12-13 14:22:06'),
 (16, '0f3dace2b940b39', 'Balance credited', 0, 500, 500, '2019-12-12 15:26:23'),
+(10, '177b19ce74b699e', 'NSU e-Wallet. Credit', 0, 50, 615, '2019-12-13 13:34:31'),
+(10, '18e6ba9aaec555b', 'NSU e-Wallet. Credit', 0, 980, 1825, '2019-12-16 12:17:36'),
+(1, '1dfbce558240961', 'Balance credited', 0, 15, 1545, '2019-12-13 03:47:25'),
 (16, '2849672a2e43aff', 'Balance credited', 0, 900, 1400, '2019-12-12 18:08:30'),
 (16, '422920b4df62a00', 'initial', 0, 0, 0, '2019-12-12 13:33:19'),
+(16, '4274bea9e6bc3eb', 'NSU e-Wallet. Debit', 980, 0, 100225, '2019-12-16 12:17:36'),
+(1, '512eb0830c4e18c', 'NSU e-Wallet. Debit', 150, 0, 1250, '2019-12-13 12:06:33'),
+(16, '6bdfc734ba092ce', 'Balance credited', 0, 100000, 101205, '2019-12-16 12:15:09'),
 (1, '732ae2efe32c3eb', 'initial', 0, 0, 0, '2019-12-01 06:53:35'),
+(16, '77117f643ba8658', 'Balance credited', 0, 100000, 200225, '2019-12-16 12:24:00'),
 (10, '7e9f8986c3793ca', 'NSU e-Wallet. Credit', 0, 110, 110, '2019-12-12 18:02:11'),
 (1, '892a1276426c06d', 'Balance credited', 0, 1400, 1400, '2019-12-12 18:09:32'),
+(1, '8dd2eaa0681bdfc', 'NSU e-Wallet. Debit', 230, 0, 970, '2019-12-13 14:22:06'),
 (10, '992eca86319e1a0', 'NSU e-Wallet. Credit', 0, 110, 220, '2019-12-12 18:10:13'),
 (10, '99ffba325df79bc', 'NSU e-Wallet. Credit', 0, 195, 415, '2019-12-13 07:11:54'),
 (16, '9a0ce027cc2df47', 'NSU e-Wallet. Debit', 195, 0, 1205, '2019-12-13 07:11:54'),
+(10, '9aaa22f5a123ab9', 'NSU e-Wallet. Credit', 0, 145, 560, '2019-12-13 03:49:32'),
 (10, 'b635bbe42634d77', 'initial', 0, 0, 0, '2019-12-11 06:55:30'),
+(1, 'b9b9c8b9abbf350', 'Balance credited', 0, 20, 1530, '2019-12-13 03:40:08'),
+(10, 'bb52978dd8dd359', 'NSU e-Wallet. Credit', 0, 150, 565, '2019-12-13 12:06:33'),
+(1, 'bc0b3ed6e6f9fa9', 'NSU e-Wallet. Debit', 145, 0, 1400, '2019-12-13 03:49:32'),
 (1, 'f030867c77e4051', 'Balance credited', 0, 200, 1490, '2019-12-12 18:19:36'),
-(15, 'fba2a307f559e62', 'initial', 0, 0, 0, '2019-12-11 07:09:46'),
-(1, 'ff237b4793b83b3', 'Balance credited', 0, 20, 1510, '2019-12-13 17:48:15');
+(1, 'f2ce8e763202a57', 'NSU e-Wallet. Debit', 50, 0, 1200, '2019-12-13 13:34:31'),
+(15, 'fba2a307f559e62', 'initial', 0, 0, 0, '2019-12-11 07:09:46');
 
 -- --------------------------------------------------------
 

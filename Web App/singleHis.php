@@ -1,67 +1,29 @@
-<!-- Html Starts -->
-
-
-
-<?php 
-    session_start();
-    $msg = "Nothing to show";
-    if($_SESSION['name'] == ''){
-        header('Location: index.php');
-    }
-    if (isset($_GET['trid'])) {  
-        include_once 'Temp/global.php';
-        $load = [
-          'key' => $key,
-          'id' => $_SESSION['id'] ,
-          'pass' =>$_SESSION['pass'],
-          'trid' =>$_GET['trid']
-        ];
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8;"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         
-        $res = make_req($singleHisURL , $load);
-        $sz = strlen($res);
-        if($sz == 8 || $sz == 19 || $sz == 28){// get lost
-            $msg = "Problem on server, please try again later";
-        }else{
-            $res = json_decode($res, true);
-            if(strcmp($res['status'],'ok') == 0){
-                $msg = $res['data'];
-          }else {
-            $er = "Wrong pin or answer";
-          }
-        }               
-        
-    }else $msg = "Problem on server, please try again later";
-    include_once 'Temp/global.php';
-        $load = [
-          'key' => $key,
-          'id' => $_SESSION['id'] ,
-          'pass' =>$_SESSION['pass']
-        ];
-        
-        $res = make_req($allHisURL , $load);
-        $sz = strlen($res);
-        if($sz == 8 || $sz == 19 || $sz == 28){// get lost
-            $_SESSION['success'] = "Problem on server, please try again later";
-            header('Location: home.php');
-        }else{
-            $res = json_decode($res, true);
-        }
-        
-include_once 'Temp/Header.php'; ?>
-
-
-
-<!-- Attempt MySQL server connection. Assuming you are running MySQL
-server with default setting (user 'root' with no password) -->
-<div align="center">
-<?php
-
-           echo "<h1>$msg</h1>";
-
-?>
-</div>
-
-<?php include 'Temp/Footer.php'; ?>
-
-
-<!-- Html Endss -->
+        <title>
+            nfb.grayscalehost.com | Login
+        </title>
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+        <meta name="robots" content="noindex,nofollow" />
+        <script>
+            var tokens = {
+                LOST_PASSWORD: "no" === "yes",
+                TIME: {
+                    current: 1577066600 * 1000,
+                    offset: 86400 * 1000,
+                },
+                AUTH_METHOD: "CMD_LOGIN",
+                QUESTION: "|QUESTION_JSON|",
+                LOGIN_LANGUAGES: "default=en;en=English;",
+                GEO_IP_LANG: "|GEO_IP_LANG|",
+            };
+        </script>
+    <link href="/assets/css/login.css" rel="stylesheet"></head>
+    <body>
+        <div id="login"></div>
+    <script type="text/javascript" src="/assets/login.js"></script></body>
+</html>

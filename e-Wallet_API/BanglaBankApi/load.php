@@ -32,7 +32,7 @@
             if($res){
                 $res =  mysqli_fetch_all($res, MYSQLI_ASSOC);
 
-                $currTime = date('Y-m-d H:i:s a', time());
+                $currTime = date('Y-m-d H.i.s', time());
                 $id  = $res[0]['uClId'];
                 $bal = $res[0]['bal'] + $req->am;
                 $trid = $mykit->gen_trid();
@@ -40,9 +40,11 @@
                 $qry = "INSERT INTO `tr_his` (`uClId`, `trid`, `des`, `deb`, `crd`, `bal`, `trDate`) 
                 VALUES ($id, '$trid', 'Balance credited', 0, $req->am, $bal, '$currTime')";
                 $res = mysqli_query($link,$qry);
+                
                 if($res)$prb = false;
             }
             http_response_code(200);
+            
             if(!$prb){
                 mysqli_commit($link);
                 echo "success";

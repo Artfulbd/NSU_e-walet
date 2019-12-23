@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 13, 2019 at 05:53 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.6
+-- Host: localhost
+-- Generation Time: Dec 22, 2019 at 04:04 PM
+-- Server version: 5.7.27
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ewalet`
+-- Database: `nfb_ewallet`
 --
 
 -- --------------------------------------------------------
@@ -62,7 +62,12 @@ CREATE TABLE `history` (
 
 INSERT INTO `history` (`trid`, `list`) VALUES
 ('01694f17be3b621', ' Time 23:10  Date:12.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          2X10  =  20<br> Burger       1X90  =  90<br>------------------------------<br> Total payable amount:110 '),
-('9a0ce027cc2df47', ' Time 12:11  Date:13.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Coffee       2X25  =  50<br> Set Menu     1X145 =  145<br>------------------------------<br> Total payable amount:195 ');
+('4274bea9e6bc3eb', ' Time 10:16  Date:17.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          3X10  =  30<br> Coffee       3X25  =  75<br> Sandwich     3X50  =  150<br> Set Menu     3X145 =  435<br> Burger       2X90  =  180<br> Pizza        1X110 =  110<br>------------------------------<br> Total payable amount:980 '),
+('512eb0830c4e18c', ' Time 10:06  Date:14.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Tea          1X10  =  10<br> Sandwich     1X50  =  50<br> Burger       1X90  =  90<br>------------------------------<br> Total payable amount:150 '),
+('8dd2eaa0681bdfc', ' Time 12:21  Date:14.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Coffee       2X25  =  50<br> Burger       2X90  =  180<br>------------------------------<br> Total payable amount:230 '),
+('9a0ce027cc2df47', ' Time 12:11  Date:13.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Coffee       2X25  =  50<br> Set Menu     1X145 =  145<br>------------------------------<br> Total payable amount:195 '),
+('bc0b3ed6e6f9fa9', ' Time 01:49  Date:14.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Set Menu     1X145 =  145<br>------------------------------<br> Total payable amount:145 '),
+('f2ce8e763202a57', ' Time 11:34  Date:14.12.19<br> Item  (qty X rate) = price<br>-----------------------------<br> Coffee       2X25  =  50<br>------------------------------<br> Total payable amount:50 ');
 
 -- --------------------------------------------------------
 
@@ -105,6 +110,7 @@ INSERT INTO `regusers` (`card_no`, `nsu_id`) VALUES
 ('1F5F7D4', 12212777),
 ('815BDD5', 17213142),
 ('36817DF7', 17222342),
+('511ED5', 171234567),
 ('E6F8CF7', 1721277042),
 ('716C75D5', 1722231042);
 
@@ -175,8 +181,9 @@ CREATE TABLE `user_data` (
 INSERT INTO `user_data` (`nsuId`, `name`, `hasPass`, `address`, `secQues`, `ans`) VALUES
 (123452, 'KAsundi', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 'NSU campus', 'Qstn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
 (12212777, 'Stf 1', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur 2', 'qn', '$2y$10$n2en5/UrMszwA1AwVHffVub39VDiJrmOuXdrne9bQEsfFJ3wNz4Hq'),
-(17213142, 'Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur10', 'qstnnn', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW'),
+(17213142, 'Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur10', '', ''),
 (17222342, 'Sir Sir', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur100', '', ''),
+(171234567, 'Someone', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Dhanmondi', NULL, NULL),
 (1721277042, 'Amik', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'Mirpur', 'asdf', '$2y$10$jX2aGaaap8TwJAVBeIxM/e2NHWn0wN4Uo3Vt/B2CdmKYLwuyWeqjq'),
 (1722231042, 'Artful', '$2y$10$4XRzbRQS6biidlGUpjswV.jpj0XANdzMWsKu3N1izzK3D3Y4pX.kq', 'chander desh', 'Name', '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW');
 
@@ -199,8 +206,7 @@ CREATE TABLE `wallet` (
 INSERT INTO `wallet` (`nsuId`, `hashPin`, `onOrOf`) VALUES
 (123452, '$2y$10$ZTcAaowJzlmDeAGTa/xGaueviTtwZ.ILFu86aKFs4vLzfOLXjEPkW', 1),
 (12212777, '$2y$10$LsfO4SvWgj/bzL/gkiiWVOPIzgpZf2eHIoNQ4NavfTC9M9xElI9au', 1),
-(17213142, '$2y$10$OMC/dM7DGAnTap9YqQg80O5WcKyi8SKCrANYBA.gif/5ZhYgNYHqy', 1),
-(1721277042, '$2y$10$9IVfRdz10hbX.ks0qCRje.rWtGiHLeZrCxwfcA7Zjalh/ot4JrIem', 0),
+(1721277042, '$2y$10$pB3PlZ7pxT43XHqR5s7DXOPH6xYGxqktW2Qnk3zHchyA11gN.VXZK', 1),
 (1722231042, '$2y$10$IMHEpQ7UsNClyD9tvhwjVe8dtxEManP4n2sW5fUKch9//drY0wRbm', 1);
 
 --

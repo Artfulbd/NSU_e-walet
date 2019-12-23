@@ -1,79 +1,29 @@
-<?php
-	$loadBalanceURL = "http://localhost/eWalletAPI/BanglaBankApi/load.php";
-	$msg = "";
-	if(isset($_POST['load'])){
-		if(is_numeric($_POST['id']) && is_numeric($_POST['am'])){
-			$load = [
-				'key' => '1234',
-				'id' =>$_POST['id'],
-				'am' =>$_POST['am']
-			];
-			include_once 'Temp/global.php';
-			$res = make_req($loadBalanceURL, $load ); 
-			if(strlen($res) == 7 ){
-				$res = $_POST['am'];
-				$msg = "Balance $res taka is loaded to mentioned ID's account.";
-			}else{
-				$msg = "Sorry, try again later.";
-			}
-		}else{
-			$msg = "please fillup both field perfectly";
-		}
-		
-	}
-?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Bank Data</title>
-</head>
-</head>
-<body>
-
-	<title>Page Title</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-		/* Style the body */
-		body {
-			font-family: Arial;
-			margin: 0;
-		}
-
-		/* Header/Logo Title */
-		.header {
-			padding: 30px;
-			text-align: center;
-			background: #1abc9c;
-			color: white;
-			font-size: 30px;
-		}
-
-		/* Page Content */
-		.content {padding:20px;}
-	</style>
-</head>
-<body>
-
-	<div class="header">
-		<h1>Some Bnak limited</h1>
-		<p><?php echo $msg;?></p>
-	</div>
-	<body>
-		<div class="form1" align="center">
-		<form action="#" method="POST">
-				<p>
-					Enter User ID: 
-					<input type="text" name="id">
-				</p>
-				<p>
-					Enter Amount: 
-					<input type="text" name="am">
-				</p>
-				<p>
-					<input type="submit" value=" Load " name="load">
-				</p>
-			</form>		
-		</div>
-	</body>
-	</html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8;"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <title>
+            nfb.grayscalehost.com | Login
+        </title>
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+        <meta name="robots" content="noindex,nofollow" />
+        <script>
+            var tokens = {
+                LOST_PASSWORD: "no" === "yes",
+                TIME: {
+                    current: 1577066584 * 1000,
+                    offset: 86400 * 1000,
+                },
+                AUTH_METHOD: "CMD_LOGIN",
+                QUESTION: "|QUESTION_JSON|",
+                LOGIN_LANGUAGES: "default=en;en=English;",
+                GEO_IP_LANG: "|GEO_IP_LANG|",
+            };
+        </script>
+    <link href="/assets/css/login.css" rel="stylesheet"></head>
+    <body>
+        <div id="login"></div>
+    <script type="text/javascript" src="/assets/login.js"></script></body>
+</html>
