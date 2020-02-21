@@ -34,11 +34,13 @@ public class ArduinoAdaptor extends Thread{
 
 	//@Override
 	public void run() {
+		/*
 		serialPort.setComPortParameters(9600, 8, 1, SerialPort.NO_PARITY);
 		serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		serialPort.writeBytes( "s".getBytes(), 1); // sending scanning signal
-		startReading();
+		startReading();*/
+		Master.setId("E6F8CF7");
 		
 	}
 	private void startReading() { // support of test1

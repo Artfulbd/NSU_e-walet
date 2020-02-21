@@ -73,7 +73,7 @@
 
                     <ul class="submenu">
                         <li class="hover">
-                            <a href="#">
+                            <a href="home.php">
                                 <i class="menu-icon fa fa-caret-right"></i> Student Information
                             </a>
 

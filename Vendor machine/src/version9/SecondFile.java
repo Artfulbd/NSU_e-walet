@@ -63,19 +63,8 @@ public class SecondFile extends JFrame {
 		mapItem.put("Burger", 0);
 		mapItem.put("Pizza", 0);
 		totalAdded = 0;
-	}/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SecondFile frame = new SecondFile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	}
+	
 
 
 	public SecondFile() {
@@ -99,12 +88,11 @@ public class SecondFile extends JFrame {
 
 	}
 	private void itemViewer() {
-		
 		setTitle("NSU_e-Wallet");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1267, 725);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -721,6 +709,7 @@ public class SecondFile extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 
 		JLabel lblChosePaymentMemthod = new JLabel("Choose payment memthod");
 		lblChosePaymentMemthod.setForeground(Color.YELLOW);
@@ -800,7 +789,7 @@ public class SecondFile extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1267, 725);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -950,7 +939,7 @@ public class SecondFile extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1267, 725);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -1025,7 +1014,7 @@ public class SecondFile extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1267, 725);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

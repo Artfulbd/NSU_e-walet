@@ -4,10 +4,10 @@
         public $sec;
         public $list;
         public $ano;
-        private $purUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/transaction.php";
-        private $createUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/create.php";
-        private $historyUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/history.php";
-        private $balanceUrl = "https://nfb.grayscalehost.com/eWalletAPI/BanglaBankApi/balance.php";
+        private $purUrl = "http://localhost/eWalletAPI/BanglaBankApi/transaction.php";
+        private $createUrl = "http://localhost/eWalletAPI/BanglaBankApi/create.php";
+        private $historyUrl = "http://localhost/eWalletAPI/BanglaBankApi/history.php";
+        private $balanceUrl = "http://localhost/eWalletAPI/BanglaBankApi/balance.php";
 
 
         function get_purchaser_url(){
@@ -27,7 +27,6 @@
         }
 
         // post request to bank server, cURL
-       // function purchase_req($url, $key, $from, $to, $am, $load ){   // fullfill it during bank api
         function make_req($url, $load ){
                 //url-ify the data for the POST
             $json_string = json_encode($load);

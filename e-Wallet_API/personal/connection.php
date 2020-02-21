@@ -2,10 +2,10 @@
 
     class ConnectTo{
         private $host = 'localhost';
-        private $user = 'nfb_artful';
-        private $pass = '#include<stdio.s>';
-        private $ewalletdb = 'nfb_ewallet';
-        private $bankdb = 'nfb_bank';
+        private $user = 'root';
+        private $pass = '';
+        private $ewalletdb = 'ewallet';
+        private $bankdb = 'bank';
         private $link;
         function __construct($dbFor) {
             $db =  strcmp($dbFor,'wallet') ? (strcmp($dbFor,'bank')?'faulty' : $this->bankdb) : $this->ewalletdb;

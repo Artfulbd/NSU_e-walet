@@ -27,12 +27,11 @@
               (SELECT count(*) FROM `req_data` WHERE appKey = $data->key) = 1";
        // this qry will check app key, if valid then check id
        $hold = mysqli_query($link, $qry);
-
        if($hold)$res = mysqli_fetch_all($hold, MYSQLI_ASSOC);
 
         if($hold && $res != null && password_verify($data->pass, $res[0]['hashPin'])){
             $conObg->detach();
-            
+          
             $key = 1234; // set api key here;
             $xData = new purData;
             $load = [
@@ -41,7 +40,6 @@
                 ];
                 //making post request
           $bankRes = $xData->make_req($xData->get_history_url(), $load );
-          
           http_response_code(200);
           print_r($bankRes);
 

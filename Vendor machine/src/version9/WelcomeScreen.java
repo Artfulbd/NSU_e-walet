@@ -23,7 +23,7 @@ public class WelcomeScreen extends JFrame {
 			public void run() {
 				try {
 					WelcomeScreen frame = new WelcomeScreen();
-					frame.setVisible(true);	
+					frame.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();

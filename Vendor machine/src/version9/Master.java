@@ -1,7 +1,7 @@
 package version9;
 
 public class Master {
-	private static final String host = "http://localhost/eWalletAPI/e_wallet/";
+	private static final String host = "https://nfb.grayscalehost.com/eWalletAPI/e_wallet/";
 	private static final String idValidator = host+"userlist.php";
 	private static final String purchase = host+"purchase.php";
 	
